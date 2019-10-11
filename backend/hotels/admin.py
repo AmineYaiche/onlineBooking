@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.contrib import admin
 
-from hotels.models import Hotel, TypeChambre, ChambrePhoto
+from hotels.models import Hotel, Chambre, ChambrePhoto
 
 
 class HotelAdmin(admin.ModelAdmin):
@@ -17,15 +17,15 @@ class ChambrePhotosInline(admin.TabularInline):
     model = ChambrePhoto
 
 
-class TypeChambreAdmin(admin.ModelAdmin):
-    list_display = ('type_chambre', 'hotel', 'prix', 'nombre_chambres', 'get_description')
+class ChambreAdmin(admin.ModelAdmin):
+    list_display = ('nom', 'hotel', 'prix', 'nombre_chambres', 'get_description')
     inlines = (ChambrePhotosInline,)
 
-    def get_description(self, type_chambre):
-        if len(type_chambre.description) > settings.DESCRIPTION_DISPLAY_CHARS:
-            return type_chambre.description[:settings.DESCRIPTION_DISPLAY_CHARS] + ' ...'
-        return type_chambre.description
+    def get_description(self, chambre):
+        if len(chambre.description) > settings.DESCRIPTION_DISPLAY_CHARS:
+            return chambre.description[:settings.DESCRIPTION_DISPLAY_CHARS] + ' ...'
+        return chambre.description
 
 
 admin.site.register(Hotel, HotelAdmin)
-admin.site.register(TypeChambre, TypeChambreAdmin)
+admin.site.register(Chambre, ChambreAdmin)
