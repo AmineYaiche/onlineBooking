@@ -5,13 +5,13 @@ import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 
 import SearchHotel from './src/components/search_hotel/Index';
+import HotelsList from './src/components/hotels/Index';
 import store from './src/store'; 
 
 
 const AppNavigator = createStackNavigator({
-  Home: {
-    screen: SearchHotel,
-  },
+  Home: {screen: SearchHotel},
+  HotelsList: {screen: HotelsList}
 });
 
 let Navigation = createAppContainer(AppNavigator);

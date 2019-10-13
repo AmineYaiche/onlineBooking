@@ -19,7 +19,7 @@ export default class SearchHotel extends React.Component<Props, State> {
   render() {
     return (
       <View style={styles.container}>
-        <DateRange />
+        <DateRange {...this.props} />
       </View>
     );
   }

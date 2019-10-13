@@ -10,6 +10,7 @@ import {setPeriod} from '../../actions/Index'
 
 interface Props {
   setPeriod: Function,
+  navigation: any,
   startDate: String,
   endDate: String
 }
@@ -56,6 +57,9 @@ class DateRange extends React.Component<Props, State> {
   showDateTimePicker = () => {
     this.setState({isDateTimePickerVisible: true});
   }
+  foo = () => {
+    
+  }
 
   render() {
     return (
@@ -69,7 +73,9 @@ class DateRange extends React.Component<Props, State> {
           {...this.config}
         />}
         { !this.state.isDateTimePickerVisible &&
-          <Button title="Valider" disabled={this.state.validateDisabled}/>
+          <Button title="Valider" disabled={this.state.validateDisabled}
+            onPress={() => this.props.navigation.navigate('HotelsList')}
+          />
         }
       </View>
     );
