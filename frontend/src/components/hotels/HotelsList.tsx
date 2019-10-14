@@ -1,6 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { ListItem } from 'react-native-elements'
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { ListItem } from 'react-native-elements';
+import { connect } from "react-redux";
+
+import {fetchHotels} from '../../actions/Index';
 
 const list = [
   {
@@ -15,35 +18,59 @@ const list = [
   },
   ];
 
+interface Hotel {
+  name: string,
+  prix: Number,
+  description: string,
+  photo: string
+}
+
 
 export interface Props {
+  fetchHotels: Function,
+  hotels: Array<Hotel>,
+  fetching: Boolean
 }
 
 interface State {
 }
 
-export default class HotelsList extends React.Component<Props, State> {
+class HotelsList extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
     };
   }
 
+  componentDidMount = () => {
+    this.props.fetchHotels();
+  }
+
   render() {
+    console.log(this.props);
     return (
-      <View>
+      <ScrollView>
         {
-          list.map((l, i) => (
+          this.props.hotels.map((hotel, index) => (
             <ListItem
-              key={i}
-              leftAvatar={{ source: { uri: l.avatar_url } }}
-              title={l.name}
-              subtitle={l.subtitle}
+              key={index}
+              leftAvatar={{ source: { uri: hotel.photo } }}
+              title={hotel.name}
+              subtitle={hotel.description}
               bottomDivider
             />
           ))
         }
-      </View>
+      </ScrollView>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return state.fetchingHotels
+}
+
+export default connect(
+  mapStateToProps,
+  {fetchHotels}
+)(HotelsList);

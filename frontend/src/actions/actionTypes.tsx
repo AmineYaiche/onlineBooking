@@ -1,1 +1,3 @@
 export const SET_PERIOD = 'SET_PERIOD';
+export const REQUEST_HOTELS = 'REQUEST_HOTELS';
+export const RECEIVED_HOTELS = 'RECEIVED_HOTELS';

@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import AppHeader from './AppHeader';
 import HotelsList from './HotelsList';
-import { connect } from 'react-redux';
 import moment from '../../../load_moment';
 
 
@@ -17,7 +16,7 @@ interface State {
   endDate: string
 }
 
-class Hotels extends React.Component<Props, State> {
+export default class Hotels extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -36,12 +35,3 @@ class Hotels extends React.Component<Props, State> {
     );
   }
 }
-
-
-const mapStateToProps = state => {
-  return state.search_hotel
-}
-
-export default connect(
-  mapStateToProps
-)(Hotels);

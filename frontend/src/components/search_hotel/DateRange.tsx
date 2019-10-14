@@ -3,7 +3,6 @@ import DatepickerRange from 'react-native-range-datepicker';
 import { Button, View, Text, StyleSheet } from "react-native";
 import moment from 'moment';
 import { connect } from "react-redux";
-import {bindActionCreators} from 'redux';
 
 import {setPeriod} from '../../actions/Index'
 
@@ -83,7 +82,7 @@ class DateRange extends React.Component<Props, State> {
 }
 
 const mapStateToProps = state => {
-  return state.search_hotel
+  return state.setPeriod
 }
 
 export default connect(
