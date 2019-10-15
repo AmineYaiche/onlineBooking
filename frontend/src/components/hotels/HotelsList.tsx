@@ -3,24 +3,12 @@ import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { connect } from "react-redux";
 
-import {fetchHotels} from '../../actions/Index';
+import {fetchHotels, hotelSelected} from '../../actions/Index';
 
-const list = [
-  {
-    name: 'Amy Farha',
-    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-    subtitle: 'Vice President'
-  },
-  {
-    name: 'Chris Jackson',
-    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-    subtitle: 'Vice Chairman'
-  },
-  ];
-
-interface Hotel {
+export interface Hotel {
+  id: number,
   name: string,
-  prix: Number,
+  prix: number,
   description: string,
   photo: string
 }
@@ -28,8 +16,10 @@ interface Hotel {
 
 export interface Props {
   fetchHotels: Function,
+  hotelSelected: Function,
   hotels: Array<Hotel>,
-  fetching: Boolean
+  fetching: Boolean,
+  navigation: any,
 }
 
 interface State {
@@ -45,19 +35,25 @@ class HotelsList extends React.Component<Props, State> {
   componentDidMount = () => {
     this.props.fetchHotels();
   }
+  
+  hotelPressed = (hotel) => {
+    this.props.hotelSelected(hotel);
+    this.props.navigation.navigate('BookingWizard');
+  }
+
 
   render() {
-    console.log(this.props);
     return (
       <ScrollView>
         {
-          this.props.hotels.map((hotel, index) => (
+          this.props.hotels.map((hotel) => (
             <ListItem
-              key={index}
+              key={hotel.id}
               leftAvatar={{ source: { uri: hotel.photo } }}
               title={hotel.name}
               subtitle={hotel.description}
               bottomDivider
+              onPress={() => this.hotelPressed(hotel)}
             />
           ))
         }
@@ -66,11 +62,12 @@ class HotelsList extends React.Component<Props, State> {
   }
 }
 
+
 const mapStateToProps = state => {
   return state.fetchingHotels
 }
 
 export default connect(
   mapStateToProps,
-  {fetchHotels}
+  {fetchHotels, hotelSelected}
 )(HotelsList);

@@ -1,10 +1,18 @@
-import { SET_PERIOD, RECEIVED_HOTELS, REQUEST_HOTELS } from '../actions/actionTypes'
+import {
+  SET_PERIOD,
+  RECEIVED_HOTELS,
+  REQUEST_HOTELS,
+  HOTEL_SELECTED,
+  WIZARD_NEXT_STEP,
+  CHANGE_EMAIL,
+  CHANGE_FIRSTNAME,
+  CHANGE_LASTNAME
+} from '../actions/actionTypes'
 
 
 export function setPeriod(state = {}, action) {
   if (action.type == SET_PERIOD) {
     return {
-      ...state,
       ...action.payload
     }
   }
@@ -12,16 +20,11 @@ export function setPeriod(state = {}, action) {
 }
 
 export function fetchingHotels(state = {
-    fetching: false,
-    hotels: []
-  },
+  fetching: false,
+  hotels: []
+},
   action
 ) {
-  if(action.type == RECEIVED_HOTELS) {
-
-    console.log('RECEIVED');
-    console.log(action)
-  }
   switch (action.type) {
     case REQUEST_HOTELS:
       return Object.assign({}, state, {
@@ -30,8 +33,47 @@ export function fetchingHotels(state = {
     case RECEIVED_HOTELS:
       return Object.assign({}, state, {
         fetching: false,
-        hotels: action.payload  
+        hotels: action.payload
       })
+  }
+  return state;
+}
+
+export function hotelSelected(state = {}, action) {
+  if (action.type == HOTEL_SELECTED) {
+    return action.payload
+  }
+  return state;
+}
+
+export function wizardStep(state = { currentStep: 0 }, action) {
+  if (action.type == WIZARD_NEXT_STEP) {
+    return { currentStep: action.payload };
+  }
+  return state;
+}
+
+export function userInfo(state = {
+  email: "",
+  firstname: "",
+  lastname: ""
+}, action) {
+  switch (action.type) {
+    case CHANGE_FIRSTNAME:
+      return {
+        ...state,
+        firstname: action.payload
+      }
+    case CHANGE_LASTNAME:
+      return {
+        ...state,
+        lastname: action.payload
+      }
+    case CHANGE_EMAIL:
+      return {
+        ...state,
+        email: action.payload
+      }
   }
   return state;
 }

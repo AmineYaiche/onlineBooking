@@ -4,14 +4,16 @@ import { Provider } from 'react-redux';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 
-import SearchHotel from './src/components/search_hotel/Index';
+import DateRange from './src/components/search_hotel/DateRange';
 import HotelsList from './src/components/hotels/Index';
+import BookingWizard from './src/components/booking/Index';
 import store from './src/store'; 
 
 
 const AppNavigator = createStackNavigator({
-  Home: {screen: SearchHotel},
-  HotelsList: {screen: HotelsList}
+  Home: {screen: HotelsList},
+  DateRange: {screen: DateRange},
+  BookingWizard: {screen: BookingWizard},
 });
 
 let Navigation = createAppContainer(AppNavigator);

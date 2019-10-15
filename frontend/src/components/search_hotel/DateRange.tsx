@@ -10,14 +10,11 @@ import {setPeriod} from '../../actions/Index'
 interface Props {
   setPeriod: Function,
   navigation: any,
-  startDate: String,
-  endDate: String
+  startDate: string,
+  endDate: string
 }
 
 interface State {
-  isDateTimePickerVisible: boolean,
-  buttonText: string,
-  validateDisabled: boolean,
 }
 
 class DateRange extends React.Component<Props, State> {
@@ -26,9 +23,6 @@ class DateRange extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      isDateTimePickerVisible: false,
-      buttonText: 'Sélectionner une période',
-      validateDisabled: true,
     };
 
     this.config = {
@@ -37,46 +31,23 @@ class DateRange extends React.Component<Props, State> {
       placeHolderUntil: 'Date fin',
       minDate: moment().format('YYYY-MM-DD'),
       showReset: false,
+      showClose: false,
     }
   }
 
   onConfirm = (startDate, endDate) => {
-    this.setState({
-      isDateTimePickerVisible: false,
-      buttonText: `${startDate.format('DD MMM YYYY')} - ${endDate.format('DD MMM YYYY')}`,
-      validateDisabled: false
-    });
     this.props.setPeriod(startDate.format('YYYY-MM-DD'), endDate.format('YYYY-MM-DD'))
+    this.props.navigation.navigate('BookingWizard')
   };
-
-  onClose = () => {
-    this.setState({isDateTimePickerVisible: false});
-  }
-
-  showDateTimePicker = () => {
-    this.setState({isDateTimePickerVisible: true});
-  }
-  foo = () => {
-    
-  }
 
   render() {
     return (
-      <View>
-        <Button title={this.state.buttonText} onPress={this.showDateTimePicker} />
-        {this.state.isDateTimePickerVisible && <DatepickerRange  
+        <DatepickerRange  
           onConfirm={this.onConfirm}
-          onClose={this.onClose}
           startDate={this.props.startDate}
           untilDate={this.props.endDate}
           {...this.config}
-        />}
-        { !this.state.isDateTimePickerVisible &&
-          <Button title="Valider" disabled={this.state.validateDisabled}
-            onPress={() => this.props.navigation.navigate('HotelsList')}
-          />
-        }
-      </View>
+        />
     );
   }
 }

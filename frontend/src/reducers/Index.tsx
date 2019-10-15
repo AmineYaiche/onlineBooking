@@ -1,8 +1,17 @@
 import { combineReducers } from 'redux';
-import {setPeriod, fetchingHotels} from './hotels';
+import {
+  setPeriod,
+  fetchingHotels,
+  hotelSelected,
+  wizardStep,
+  userInfo
+} from './hotels';
 
 export default combineReducers({
   setPeriod,
-  fetchingHotels
+  fetchingHotels,
+  hotelSelected,
+  wizardStep,
+  userInfo
 })
 
