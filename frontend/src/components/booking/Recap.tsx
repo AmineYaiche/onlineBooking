@@ -40,6 +40,7 @@ class Recap extends React.Component<Props, State> {
       ['Nom', props.user.lastname],
       ['Prénom', props.user.firstname],
       ['Email', props.user.email],
+      ['Hotel', props.hotel.name],
       ['Date debut', startDate.format('DD MMM YYYY')],
       ['Date fin', endDate.format('DD MMM YYYY')],
       ['Nombre de nuits', nightsNumber],

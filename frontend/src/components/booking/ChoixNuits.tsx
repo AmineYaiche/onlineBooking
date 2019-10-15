@@ -3,7 +3,6 @@ import {StyleSheet, Text, View, Button} from 'react-native';
 import { connect } from "react-redux";
 
 import moment from '../../../load_moment';
-import DateRange from '../search_hotel/DateRange';
 import {Hotel} from '../hotels/HotelsList';
 
 export interface Props {
@@ -28,7 +27,6 @@ class ChoixNuits extends React.Component<Props, State> {
   }
 
   getDisplayRange() {
-    console.log(this.props.startDate)
     const startDate = moment(this.props.startDate).format('DD MMM YYYY');
     const endDate = moment(this.props.endDate).format('DD MMM YYYY');
     return startDate + ' - ' + endDate;

@@ -4,7 +4,8 @@ import {
   fetchingHotels,
   hotelSelected,
   wizardStep,
-  userInfo
+  userInfo,
+  validatedBooking,
 } from './hotels';
 
 export default combineReducers({
@@ -12,6 +13,7 @@ export default combineReducers({
   fetchingHotels,
   hotelSelected,
   wizardStep,
-  userInfo
+  userInfo,
+  validatedBooking,
 })
 

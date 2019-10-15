@@ -6,7 +6,8 @@ import {
   WIZARD_NEXT_STEP,
   CHANGE_FIRSTNAME,
   CHANGE_LASTNAME,
-  CHANGE_EMAIL
+  CHANGE_EMAIL,
+  VALIDATE_BOOKING
 } from './actionTypes';
 
 export const setPeriod = (startDate, endDate) => ({
@@ -76,5 +77,16 @@ export function changeEmail(email) {
   return {
     type: CHANGE_EMAIL,
     payload: email
+  }
+}
+
+export function validateBooking(user, hotel, period) {
+  return {
+    type: VALIDATE_BOOKING,
+    payload: {
+      user,
+      hotel,
+      period
+    }
   }
 }

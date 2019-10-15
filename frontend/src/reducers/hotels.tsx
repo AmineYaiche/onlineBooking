@@ -6,7 +6,8 @@ import {
   WIZARD_NEXT_STEP,
   CHANGE_EMAIL,
   CHANGE_FIRSTNAME,
-  CHANGE_LASTNAME
+  CHANGE_LASTNAME,
+  VALIDATE_BOOKING,
 } from '../actions/actionTypes'
 
 
@@ -43,6 +44,11 @@ export function hotelSelected(state = {}, action) {
   if (action.type == HOTEL_SELECTED) {
     return action.payload
   }
+
+  if (action.type == VALIDATE_BOOKING) {
+    return {};
+  }
+
   return state;
 }
 
@@ -74,6 +80,16 @@ export function userInfo(state = {
         ...state,
         email: action.payload
       }
+  }
+  return state;
+}
+
+export function validatedBooking(state = [], action) {
+  if (action.type == VALIDATE_BOOKING) {
+    return [
+      ...state,
+      { ...action.payload }
+    ];
   }
   return state;
 }
