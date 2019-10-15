@@ -4,14 +4,16 @@ import { Button, View, Text, StyleSheet } from "react-native";
 import moment from 'moment';
 import { connect } from "react-redux";
 
-import {setPeriod} from '../../actions/Index'
+import {setPeriod, errorBookingForm, noErrorBookingForm} from '../../actions/Index'
 
 
 interface Props {
-  setPeriod: Function,
-  navigation: any,
-  startDate: string,
+  setPeriod: Function
+  navigation: any
+  startDate: string
   endDate: string
+  errorBookingForm: Function
+  noErrorBookingForm: Function
 }
 
 interface State {
@@ -36,8 +38,9 @@ class DateRange extends React.Component<Props, State> {
   }
 
   onConfirm = (startDate, endDate) => {
+    this.props.noErrorBookingForm();
     this.props.setPeriod(startDate.format('YYYY-MM-DD'), endDate.format('YYYY-MM-DD'))
-    this.props.navigation.navigate('BookingWizard')
+    this.props.navigation.navigate('BookingWizard');
   };
 
   render() {
@@ -58,5 +61,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {setPeriod}
+  {setPeriod, errorBookingForm, noErrorBookingForm}
 )(DateRange);

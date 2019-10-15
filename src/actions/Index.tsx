@@ -7,7 +7,9 @@ import {
   CHANGE_FIRSTNAME,
   CHANGE_LASTNAME,
   CHANGE_EMAIL,
-  VALIDATE_BOOKING
+  VALIDATE_BOOKING,
+  ERROR_BOOKING_FORM,
+  NO_ERROR_BOOKING_FORM
 } from './actionTypes';
 
 export const setPeriod = (startDate, endDate) => ({
@@ -88,5 +90,20 @@ export function validateBooking(user, hotel, period) {
       hotel,
       period
     }
+  }
+}
+
+export function errorBookingForm(errorMessage) {
+  return {
+    type: ERROR_BOOKING_FORM,
+    payload: {
+      errorMessage
+    }
+  }
+}
+
+export function noErrorBookingForm() {
+  return {
+    type: NO_ERROR_BOOKING_FORM
   }
 }

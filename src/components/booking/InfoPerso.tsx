@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { ScrollView, SafeAreaView } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 
+import { errorBookingForm, noErrorBookingForm } from '../../actions/Index';
+
 import {
   changeEmail,
   changeFirstName,
@@ -21,6 +23,8 @@ export interface Props {
   changeEmail: Function
   changeFirstName: Function
   changeLastName: Function
+  errorBookingForm: Function
+  noErrorBookingForm: Function
 }
 
 interface State {
@@ -63,8 +67,11 @@ class InfoPerso extends React.Component<Props, State> {
     };
   }
 
+  componentDidMount = () => {
+    this.props.errorBookingForm("L'email est obligatoire.");
+  }
+
   validateFirstName = () => {
-    console.log(this.props.user)
     if (/\d/.test(this.props.user.firstname)) {
       this.setState({ errors: { firstname: "Le prenom ne doit pas contenir des chiffres." } })
     }
@@ -85,7 +92,9 @@ class InfoPerso extends React.Component<Props, State> {
 
     if (!emailRegex.test(this.props.user.email)) {
       this.setState({ errors: { email: "Le format de l'email est invalide." } })
+      return
     }
+    this.props.noErrorBookingForm();
   }
 
   onFocus = () => {
@@ -197,5 +206,7 @@ export default connect(
     changeEmail,
     changeFirstName,
     changeLastName,
+    errorBookingForm,
+    noErrorBookingForm
   }
 )(InfoPerso);

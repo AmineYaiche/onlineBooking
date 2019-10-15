@@ -1,8 +1,0 @@
-OpenJDK 64-Bit Server VM warning: Option UseConcMarkSweepGC was deprecated in version 9.0 and will likely be removed in a future release.
-2019-10-13 18:47:22,328 [   5320]   WARN - llij.ide.plugins.PluginManager - Markdown support not loaded: until build 191.SNAPSHOT < PC-192.6817.19 
-2019-10-13 18:47:22,329 [   5321]   WARN - llij.ide.plugins.PluginManager - BashSupport not loaded: until build 191.SNAPSHOT < PC-192.6817.19 
-2019-10-13 18:48:08,313 [  51305]  ERROR - terminal.emulator.JediEmulator - Unhandled Control sequence
-parsed                        :ESC[?2004h
-bytes read                    :ESC[ 
-2019-10-13 18:48:13,547 [  56539]   WARN - ution.process.OSProcessHandler - Process has been already terminated: setsid /usr/bin/nice -n 10 /usr/bin/git -c credential.helper= -c core.quotepath=false -c log.showSignature=false -c diff.renameLimit=1 log -M -m --no-walk=unsorted --stdin --pretty=format:%x01%x01%H%x02%x02%P%x02%x02%ct%x02%x02%cn%x02%x02%ce%x02%x02%an%x02%x02%at%x02%x02%ae%x02%x02%s%x02%x02%b%x02%x02%B%x03%x03 --encoding=UTF-8 --name-status -- 
-2019-10-14 20:00:45,690 [90808682]   WARN - com.intellij.ide.IdeEventQueue - System clock's jumped back by ~1 sec 

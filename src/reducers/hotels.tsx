@@ -8,6 +8,8 @@ import {
   CHANGE_FIRSTNAME,
   CHANGE_LASTNAME,
   VALIDATE_BOOKING,
+  ERROR_BOOKING_FORM,
+  NO_ERROR_BOOKING_FORM,
 } from '../actions/actionTypes'
 
 
@@ -105,6 +107,16 @@ export function validatedBooking(state = [], action) {
       ...state,
       { ...action.payload }
     ];
+  }
+  return state;
+}
+
+export function errorBookingForm(state="", action) {
+  if (action.type == ERROR_BOOKING_FORM) {
+    return action.payload;
+  }
+  if (action.type == NO_ERROR_BOOKING_FORM) {
+    return "";
   }
   return state;
 }

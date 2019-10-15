@@ -6,6 +6,7 @@ import {
   wizardStep,
   userInfo,
   validatedBooking,
+  errorBookingForm,
 } from './hotels';
 
 export default combineReducers({
@@ -15,5 +16,6 @@ export default combineReducers({
   wizardStep,
   userInfo,
   validatedBooking,
+  errorBookingForm
 })
 
