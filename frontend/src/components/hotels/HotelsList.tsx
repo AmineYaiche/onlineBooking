@@ -54,6 +54,7 @@ class HotelsList extends React.Component<Props, State> {
               subtitle={hotel.description}
               bottomDivider
               onPress={() => this.hotelPressed(hotel)}
+              rightTitle={hotel.prix + ' € / nuit'}
             />
           ))
         }
