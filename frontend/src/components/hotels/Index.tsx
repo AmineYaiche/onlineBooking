@@ -27,7 +27,7 @@ class Hotels extends React.Component<Props, State> {
   render() {
     return (
       <>
-        <AppHeader title="Selectioner hotel" />
+        <AppHeader title="Selectioner hotel" {...this.props} />
         <ValidationSuccess show={this.props.navigation.getParam('validationSuccess', false)}/>
         <HotelsList {...this.props} />
       </>

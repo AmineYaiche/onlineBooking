@@ -92,9 +92,9 @@ const styles = StyleSheet.create(
 const mapStateToProps = state => {
   return {
     ...state.wizardStep,
-    user: state.user,
-    hotel: state.hotel,
-    period: state.period
+    user: state.userInfo,
+    hotel: state.hotelSelected,
+    period: state.setPeriod
   }
 }
 

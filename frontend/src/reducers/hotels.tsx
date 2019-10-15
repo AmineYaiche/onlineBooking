@@ -17,6 +17,10 @@ export function setPeriod(state = {}, action) {
       ...action.payload
     }
   }
+
+  if (action.type == VALIDATE_BOOKING) {
+    return {};
+  }
   return state
 }
 
@@ -56,6 +60,10 @@ export function wizardStep(state = { currentStep: 0 }, action) {
   if (action.type == WIZARD_NEXT_STEP) {
     return { currentStep: action.payload };
   }
+
+  if (action.type == VALIDATE_BOOKING) {
+    return { currentStep: 0 };
+  }
   return state;
 }
 
@@ -80,12 +88,19 @@ export function userInfo(state = {
         ...state,
         email: action.payload
       }
+    case VALIDATE_BOOKING:
+      return {
+        email: "",
+        firstname: "",
+        lastname: ""
+      }
   }
   return state;
 }
 
 export function validatedBooking(state = [], action) {
   if (action.type == VALIDATE_BOOKING) {
+    console.log(action.payload)
     return [
       ...state,
       { ...action.payload }
